@@ -4,17 +4,16 @@ body {
 }
 
 #grid-container {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr); /* Three columns with equal width */
-  gap: 10px; /* Gap between grid items */
-  padding: 10px; /* Padding around the grid container */
-  justify-content: center; /* Center the grid horizontally */
-  align-items: center; /* Center the grid vertically */
+  display: flex; /* Use flexbox instead of grid */
+  flex-wrap: wrap; /* Wrap items to the next line if necessary */
+  justify-content: center; /* Center the items horizontally */
+  align-items: center; /* Center the items vertically */
   height: 100vh; /* Set the height of the grid container to full viewport height */
 }
 
 .grid-item {
-  width: calc(33.3333% - 20px); /* Set the width of each square to 1/3 of the grid minus the gap */
-  padding-top: calc(33.3333% - 20px); /* Maintain a 1:1 aspect ratio by setting the height equal to the width */
+  flex-basis: calc(33.3333% - 20px); /* Set the initial size of each square to 1/3 of the available space minus the gap */
+  margin: 10px; /* Add margin around each square */
+  padding-top: 100%; /* Maintain a 1:1 aspect ratio by setting the padding as a percentage of the width */
   background-color: #333;
 }
