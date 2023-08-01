@@ -4,17 +4,16 @@ body {
 }
 
 #grid-container {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  padding: 10px;
   justify-content: center;
-  align-items: center;
+  align-content: center;
   height: 100vh;
 }
 
 .grid-item {
-  flex-basis: 30%;
-  padding-top: 30%; /* Maintain a 1:1 aspect ratio by setting the padding-top equal to the flex-basis */
+  aspect-ratio: 1/1;
   background-color: #333;
-  margin: 2%;
-  box-sizing: border-box;
 }
