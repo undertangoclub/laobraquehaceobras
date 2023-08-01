@@ -1,16 +1,20 @@
+body {
+  margin: 0;
+  overflow: hidden;
+}
+
 #grid-container {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-gap: 10px;
-    width: 300px;
-    height: 300px;
-    margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Three columns with equal width */
+  gap: 10px; /* Gap between grid items */
+  padding: 10px; /* Padding around the grid container */
+  justify-content: center; /* Center the grid horizontally */
+  align-items: center; /* Center the grid vertically */
+  height: 100vh; /* Set the height of the grid container to full viewport height */
 }
 
 .grid-item {
-    background-color: #ddd;
-    border: 1px solid #000;
-    padding: 20px;
-    font-size: 30px;
-    text-align: center;
+  width: 30vw; /* Set the width of each square to 30% of the viewport width */
+  height: 30vw; /* Set the height of each square to 30% of the viewport width */
+  background-color: #333;
 }
