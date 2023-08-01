@@ -12,15 +12,9 @@ body {
 }
 
 .grid-item {
-  flex-basis: calc(33.3333% - 20px);
-  margin: 10px;
-  position: relative;
-  padding-bottom: calc(33.3333% - 20px); /* Set padding-bottom equal to flex-basis to maintain a 1:1 aspect ratio */
+  flex-basis: 30%;
+  padding-top: 30%; /* Maintain a 1:1 aspect ratio by setting the padding-top equal to the flex-basis */
   background-color: #333;
-}
-
-.grid-item::before {
-  content: "";
-  display: block;
-  padding-top: 100%; /* Set padding-top to 100% to counteract the effect of padding-bottom */
+  margin: 2%;
+  box-sizing: border-box;
 }
