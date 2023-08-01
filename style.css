@@ -15,6 +15,6 @@ body {
 
 .grid-item {
   width: 30vw; /* Set the width of each square to 30% of the viewport width */
-  height: 30vw; /* Set the height of each square to 30% of the viewport width */
+  padding-top: 30vw; /* Maintain a 1:1 aspect ratio by setting the height equal to the width */
   background-color: #333;
 }
