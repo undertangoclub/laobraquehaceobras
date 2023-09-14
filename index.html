@@ -3,75 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>3x3 Rectangles Fitting the Screen</title>
-    <style>
-        /* CSS styling for the rectangles */
-        html, body {
-            height: 100%;
-            margin: 0;
-            padding: 0;
-        }
-        
-        .grid-container {
-            display: grid;
-            grid-template-columns: repeat(3, minmax(0, 1fr));
-            gap: 20px;
-            padding: 20px;
-        }
-        
-        .rectangle {
-            background-color: #cccccc;
-            border: 2px solid #000000;
-            padding-top: calc(100% * 1.25/3); /* Set the aspect ratio of the rectangles (1.25:3) */
-        }
-
-        .text-box-wrapper {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-top: 20px;
-        }
-
-        .text-box {
-            width: 200px;
-            padding: 10px;
-            border: 1px solid #000000;
-            border-radius: 5px;
-        }
-    </style>
+    <title>La Øbra de Øbras - Esto es un sentido homenaje a la ONG Bitcoin Argentina y al premio B·Artes</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Existing CSS and JS links -->
 </head>
 <body>
-    <div class="grid-container">
-        <!-- Add rectangles here -->
-        <a href="link1.html"><div class="rectangle"></div></a>
-        <a href="link2.html"><div class="rectangle"></div></a>
-        <a href="link3.html"><div class="rectangle"></div></a>
-        <a href="link4.html"><div class="rectangle"></div></a>
-        <a href="link5.html"><div class="rectangle"></div></a>
-        <a href="link6.html"><div class="rectangle"></div></a>
-        <a href="link7.html"><div class="rectangle"></div></a>
-        <a href="link8.html"><div class="rectangle"></div></a>
-        <a href="link9.html"><div class="rectangle"></div></a>
-    </div>
+    <header>
+        <h1>Sea bienvenido al protoproyecto de «La Øbra de Øbras» en sentido homenaje a la ONG Bitcoin Argentina y al premio B·Artes</h1>
+    </header>
 
-    <div class="text-box-wrapper">
-        <input type="number" class="text-box" id="inputNumber" min="1" max="111" placeholder="Enter a number (1-111)">
-    </div>
+    <section id="user-input">
+        <input type="text" id="userQuestion" placeholder="Enter your question">
+        <input type="number" id="userNumber" min="1" max="111" placeholder="Escriba un número del 1 al 111">
+        <button id="generateArt">Generate</button>
+    </section>
 
-    <script>
-        const inputNumber = document.getElementById("inputNumber");
+    <section id="generated-content">
+        <div id="generatedColor"></div>
+        <div id="generatedImage"></div>
+        <div id="generatedMusic"></div>
+        <div id="generatedAnswer"></div>
+    </section>
 
-        inputNumber.addEventListener("keypress", function(event) {
-            if (event.key === "Enter") {
-                const value = parseInt(inputNumber.value);
+    <footer>
+        <button id="downloadQR">Download Your Art</button>
+    </footer>
 
-                if (value >= 1 && value <= 111) {
-                    // Redirect to a specific place based on the input value
-                    // Replace the "#" with the desired URL or anchor name
-                    window.location.href = "#" + value;
-                }
-            }
-        });
-    </script>
+    <!-- Existing scripts -->
 </body>
 </html>
