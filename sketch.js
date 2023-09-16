@@ -4,7 +4,7 @@
 
 async function generateAndDisplayArt() {
   console.log("Button clicked");
-
+  document.getElementById('message').innerText = "Ø 5,4,3,2,1, probando Ø";
   // Get user input
   const userPrompt = document.getElementById('userPrompt').value || 'random complete';
 
