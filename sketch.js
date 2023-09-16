@@ -1,3 +1,4 @@
+document.addEventListener("DOMContentLoaded", function() {
 //script.js
 
 //script paso 2
@@ -191,4 +192,4 @@ const askGptButton = document.getElementById('askGptButton');
 askGptButton.addEventListener('click', askChatGPT);
 
 // Hide the "Paso 8" text initially
-
+}
