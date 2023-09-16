@@ -175,7 +175,7 @@ function askChatGPT() {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': 'Bearer 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'  // Replace with your actual API key
+      'Authorization': 'Bearer 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'  // Replace with your actual API key
     },
     body: JSON.stringify({
       model: "gpt-3.5-turbo",
