@@ -2,9 +2,15 @@
 
 //script paso 2
 
+document.addEventListener("DOMContentLoaded", function() {
+  
+
 async function generateAndDisplayArt() {
   console.log("Button clicked");
-  document.getElementById('message').innerText = "Ø 5,4,3,2,1, probando Ø";
+  const loadingMessage = document.getElementById('loadingMessage');
+  loadingMessage.innerText = 'Aguarde un momento... dos momentos... tres momentos, ok, go Ø';
+  loadingMessage.style.display = 'block';
+
   // Get user input
   const userPrompt = document.getElementById('userPrompt').value || 'random complete';
 
@@ -68,6 +74,8 @@ async function generateAndDisplayArt() {
   }
 }
 
+
+document.getElementById('generateButton').addEventListener('click', generateAndDisplayArt)
 // Function to display images on the webpage
 // Function to display images on the webpage
 function displayImages(imageUrls) {
@@ -192,3 +200,4 @@ askGptButton.addEventListener('click', askChatGPT);
 
 // Hide the "Paso 8" text initially
 
+});
