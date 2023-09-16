@@ -89,8 +89,8 @@ function displayImages(imageUrls) {
     img.src = url;
     img.alt = 'Generated Art';
     img.id = 'generatedImage';  // Asignar el ID aquí
-    img.style.width = '100px';
-    img.style.height = '100px';
+    img.style.width = '400px';
+    img.style.height = '400px';
     imageContainer.appendChild(img);
   });
 }
