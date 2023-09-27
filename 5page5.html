@@ -10,11 +10,15 @@
   <h1>Combine Image and Shader</h1>
   <canvas id="glCanvas" width="512" height="512"></canvas>
 
+  
+
   <div id="apiResponse"></div>
   <div id="answer"></div>
   <br> <!-- Added space -->
   <div id="fragment"></div> <!-- Moved this up -->
-
+  <br> 
+  <br> 
+  <button id="downloadButton">Download</button>
   <script>
     function compileShader(gl, source, type) {
       const shader = gl.createShader(type);
@@ -245,6 +249,14 @@ fetch(url, {
   console.error("Error:", error);
 });
 
+const downloadButton = document.getElementById("downloadButton");
+
+downloadButton.addEventListener("click", function() {
+  // Navigate to 6page6.html
+  console.log("Redirecting to:", "6page6.html");
+  window.location.href = "6page6.html";
+});
+
 
     //fin scriptø
 
@@ -318,4 +330,4 @@ fetchRandomWikiSnippet();
 </body>
 </html>
 
-<!--fin 5page5.html-->
+<!--fin 5page5-->
