@@ -1,3 +1,5 @@
+/*sketch.js*/
+
 document.addEventListener("DOMContentLoaded", function() {
   const startButton = document.getElementById("startButton");
   startButton.addEventListener("click", function() {
@@ -5,3 +7,5 @@ document.addEventListener("DOMContentLoaded", function() {
     window.location.href = "../2page2/2page2.html"; // Assuming the next page is named "2page2.html"
   });
 });
+
+/*fin sketch.js*/
