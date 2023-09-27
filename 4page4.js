@@ -111,8 +111,6 @@ window.addEventListener('load', function() {
 
   animate();
 
-  const combineButton = document.getElementById("combineButton");
-
 const combineButton = document.getElementById("combineButton");
 
 combineButton.addEventListener("click", function() {
