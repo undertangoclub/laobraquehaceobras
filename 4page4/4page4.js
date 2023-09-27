@@ -111,13 +111,10 @@ window.addEventListener('load', function() {
 
   const combineButton = document.getElementById("combineButton");
 
-document.addEventListener("DOMContentLoaded", function() {
-  const combineButton = document.getElementById("combineButton");
-  combineButton.addEventListener("click", function() {
-    // Navigate to 5page5
-    console.log("Redirecting to:", "5page5.html");
-    window.location.href = "5page5.html"; // Assuming the next page is named "5page5.html" and is located in the "111/5page5" directory
-  });
+combineButton.addEventListener("click", function() {
+  // Navigate to 5page5
+  console.log("Redirecting to:", "5page5.html");
+  window.location.href = "5page5.html";
 });
 
 });
