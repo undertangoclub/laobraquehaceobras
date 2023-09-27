@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dialogflow Integration</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+  <div id="dialogflow-chat">
+    <h1>Dialogflow Chatbot</h1>
+    <input type="text" id="user-query" placeholder="Enter your query...">
+    <button id="submit-btn">Submit</button>
+    <div id="dialogflow-response"></div>
+  </div>
+
+  <script>
+    $(document).ready(function() {
+      // Set up the Dialogflow webhook URL
+      const dialogflowWebhookUrl = "https://YOUR_WEBHOOK_URL/dialogflow-webhook";
+
+      // Submit the user's query to Dialogflow
+      $("#submit-btn").click(function() {
+        const userQuery = $("#user-query").val();
+
+        $.ajax({
+          url: dialogflowWebhookUrl,
+          method: "POST",
+          data: JSON.stringify({
+            query: userQuery
+          }),
+          contentType: "application/json",
+          success: function(response) {
+            // Display the Dialogflow response
+            $("#dialogflow-response").html(response.fulfillmentText);
+          },
+          error: function(error) {
+            // Handle the error
+            console.log(error);
+            $("#dialogflow-response").html("An error occurred while communicating with Dialogflow.");
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>
