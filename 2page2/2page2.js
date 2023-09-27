@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function() {
       localStorage.setItem("userPrompt", userPrompt);
   
       // Navigate to the next page
-      window.location.href = "111/3page3/3page3.html";// Assuming the next page is named "3page3.html"
+      window.location.href = "3page3/3page3.html";// Assuming the next page is named "3page3.html"
     });
   });
   
