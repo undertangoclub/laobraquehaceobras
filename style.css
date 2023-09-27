@@ -1,1 +1,35 @@
 
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+  }
+  
+  .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;  /* Full height of the viewport */
+  }
+  
+  h1, h2 {
+    animation: fadeInOut 5s infinite;
+  }
+
+  @keyframes fadeInOut {
+    0% {
+      opacity: 0;
+    }
+    40% {
+      opacity: 1;
+      transition: opacity 0.5s ease-in; 
+    }
+    60% {
+      opacity: 1;
+      transition: opacity 0.5s ease-out;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
