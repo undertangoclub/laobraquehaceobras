@@ -114,7 +114,6 @@ window.addEventListener('load', function() {
   const combineButton = document.getElementById("combineButton");
 
 document.addEventListener("DOMContentLoaded", function() {
-  const combineButton = document.getElementById("combineButton");
   combineButton.addEventListener("click", function() {
     // Navigate to 5page5
     console.log("Redirecting to:", "5page5.html");
