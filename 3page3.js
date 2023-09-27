@@ -100,8 +100,8 @@ nextButton.addEventListener("click", function() {
   if (storedImageUrl) {
     //localStorage.setItem('generatedImageUrl', storedImageUrl);
     // Navigate to next page 
-    console.log("Redirecting to:", "/4page4/4page4.html");
-    window.location.href = "4page4/4page4.html"; 
+    console.log("Redirecting to:", "4page4.html");
+    window.location.href = "4page4.html"; 
   } else {
     console.error('Image URL not found in localStorage.');
   }
