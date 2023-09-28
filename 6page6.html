@@ -1,4 +1,4 @@
-<!--6page6.html 0.4 API-->
+<!--6page6.html 0.5 API sessionid issue-->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -16,6 +16,74 @@
     <div id="dialogflow-response"></div>
   </div>
 
+  <!-- Payment Script -->
+  <script src="https://www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js"
+  data-preference-id="28118467-afc82224-f21b-4672-bdc9-4e9371b6e9e6" data-source="button">
+  </script>
+
+  <!-- Dialogflow Messenger Script -->
+  <script src="https://www.gstatic.com/dialogflow-console/fast/df-messenger/prod/v1/df-messenger.js"></script>
+  <df-messenger
+    project-id="articulate-lens-394602"
+    agent-id="f50b78c0-21e8-4238-a606-f8c05963952a"
+    language-code="en">
+    <df-messenger-chat chat-title="laobraquehaceobras"></df-messenger-chat>
+  </df-messenger>
+
+  <!-- Styles -->
+  <style>
+    df-messenger {
+      z-index: 999;
+      position: fixed;
+      bottom: 0;
+      right: 0;
+      top: 0;
+      width: 350px;
+    }
+  </style>
+
+  <script>
+    // Generate a random session ID
+    const sessionId = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+
+    // Set up the API endpoint
+    const apiUrl = 'https://api.dialogflow.com/v1/query?v=20150910';
+
+    // Set up the API headers
+    const apiHeaders = {
+      'Authorization': 'Bearer AIzaSyA-K_GRJ-Qn2jNh8eDgDF3_T2tHUPMSpRk',
+      'Content-Type': 'application/json'
+    };
+
+    // Set up the submit button click event
+    $('#submit-btn').click(function() {
+      // Get the user query
+      const userQuery = $('#user-query').val();
+
+      // Clear the user query input
+      $('#user-query').val('');
+
+      // Send the user query to Dialogflow
+      $.ajax({
+        url: apiUrl,
+        headers: apiHeaders,
+        method: 'POST',
+        data: JSON.stringify({
+          query: userQuery,
+          lang: 'en',
+          sessionId: sessionId  // Use the generated session ID here
+        }),
+        success: function(response) {
+          // Display the response from Dialogflow
+          $('#dialogflow-response').text(response.result.fulfillment.speech);
+        },
+        error: function(error) {
+          // Display an error message
+          $('#dialogflow-response').text('An error occurred: ' + error.statusText);
+        }
+      });
+    });
+  </script>
   <!-- Payment Script -->
   <script src="https://www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js"
   data-preference-id="28118467-afc82224-f21b-4672-bdc9-4e9371b6e9e6" data-source="button">
