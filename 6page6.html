@@ -1,4 +1,4 @@
-<!--6page6.html 0.3 OAUTH actualized-->
+<!--6page6.html 0.4 API-->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -24,7 +24,6 @@
   <!-- Dialogflow Messenger Script -->
   <script src="https://www.gstatic.com/dialogflow-console/fast/df-messenger/prod/v1/df-messenger.js"></script>
   <df-messenger
-    oauth-client-id="105921562768-uvg3d4octdpenrgctglvoc7e78ftt2m4.apps.googleusercontent.com"
     project-id="articulate-lens-394602"
     agent-id="f50b78c0-21e8-4238-a606-f8c05963952a"
     language-code="en">
@@ -42,6 +41,46 @@
       width: 350px;
     }
   </style>
+
+  <script>
+    // Set up the API endpoint
+    const apiUrl = 'https://api.dialogflow.com/v1/query?v=20150910';
+
+    // Set up the API headers
+    const apiHeaders = {
+      'Authorization': 'Bearer AIzaSyA-K_GRJ-Qn2jNh8eDgDF3_T2tHUPMSpRk',
+      'Content-Type': 'application/json'
+    };
+
+    // Set up the submit button click event
+    $('#submit-btn').click(function() {
+      // Get the user query
+      const userQuery = $('#user-query').val();
+
+      // Clear the user query input
+      $('#user-query').val('');
+
+      // Send the user query to Dialogflow
+      $.ajax({
+        url: apiUrl,
+        headers: apiHeaders,
+        method: 'POST',
+        data: JSON.stringify({
+          query: userQuery,
+          lang: 'en',
+          sessionId: 'YOUR_SESSION_ID'
+        }),
+        success: function(response) {
+          // Display the response from Dialogflow
+          $('#dialogflow-response').text(response.result.fulfillment.speech);
+        },
+        error: function(error) {
+          // Display an error message
+          $('#dialogflow-response').text('An error occurred: ' + error.statusText);
+        }
+      });
+    });
+  </script>
 
   <script src="https://www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js"
   data-preference-id="28118467-afc82224-f21b-4672-bdc9-4e9371b6e9e6" data-source="button">
