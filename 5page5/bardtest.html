@@ -1,5 +1,3 @@
-<!--bardtest-->
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,12 +15,12 @@
     <p id="answer"></p>
 
     <script>
-        const apiKey = 'agj3qXQ9tAlxOBkRhJ0qbpN1qYTFRgwhFTcdYSrommulEVdiK_YQTV94nY-2zB7EskeG9A';  // Replace with your Bard API key
+        const apiKey = 'agj3qXQ9tAlxOBkRhJ0qbpN1qYTFRgwhFTcdYSrommulEVdiNJ_4_aeGRoxLPUZ3lwKY0w.';  // Replace with your Bard API key
 
         document.getElementById('questionForm').addEventListener('submit', function(e) {
             e.preventDefault();
             const question = document.getElementById('question').value;
-            fetch('https://bard.google.com/chat/f07ec6dd50bb4d70', {  // Replace with the actual Bard API URL
+            fetch('https://api.bard.ai/ask', {  // Replace with the actual Bard API URL
                 method: 'POST',
                 headers: {
                     'Authorization': `Bearer ${apiKey}`,
