@@ -1,0 +1,45 @@
+<!--bardtest-->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bard API Interaction</title>
+</head>
+<body>
+
+    <h1>Ask a Question</h1>
+    <form id="questionForm">
+        <input type="text" id="question" placeholder="Enter your question here">
+        <button type="submit">Ask</button>
+    </form>
+
+    <h2>Answer:</h2>
+    <p id="answer"></p>
+
+    <script>
+        const apiKey = 'agj3qXQ9tAlxOBkRhJ0qbpN1qYTFRgwhFTcdYSrommulEVdiK_YQTV94nY-2zB7EskeG9A';  // Replace with your Bard API key
+
+        document.getElementById('questionForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const question = document.getElementById('question').value;
+            fetch('https://bard.google.com/chat/f07ec6dd50bb4d70', {  // Replace with the actual Bard API URL
+                method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${apiKey}`,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ question: question })
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('answer').innerText = data.answer;
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                document.getElementById('answer').innerText = 'An error occurred.';
+            });
+        });
+    </script>
+
+</body>
+</html>
