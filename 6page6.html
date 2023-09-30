@@ -604,8 +604,19 @@ fetch('longText.txt')
 .then(response => response.text())
 .then(text => {
   const fragment = getRandomFragment(text);
-  document.getElementById('fragment').innerText = fragment;
+  const words = fragment.split(' ');
+  let formattedFragment = '';
+
+  for (let i = 0; i < words.length; i++) {
+    formattedFragment += words[i] + ' ';
+    if ((i + 1) % 15 === 0) {
+      formattedFragment += '<br>';
+    }
+  }
+
+  document.getElementById('fragment').innerHTML = formattedFragment;
 });
+
 
 async function fetchRandomWikiSnippet() {
 try {
