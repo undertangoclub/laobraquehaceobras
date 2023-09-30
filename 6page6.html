@@ -193,12 +193,6 @@
   <a href='https://cafecito.app/pablocieslik' rel='noopener' target='_blank'><img srcset='https://cdn.cafecito.app/imgs/buttons/button_1.png 1x, https://cdn.cafecito.app/imgs/buttons/button_1_2x.png 2x, https://cdn.cafecito.app/imgs/buttons/button_1_3.75x.png 3.75x' src='https://cdn.cafecito.app/imgs/buttons/button_1.png' alt='Invitame un café en cafecito.app' /></a>
 <br>
 <p>Arte, Lógica y Tecnología al 30 de septiembre del 2023</p>
-  <!-- Payment Script -->
-  <script src="https://www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js" 
-          data-preference-id="28118467-afc82224-f21b-4672-bdc9-4e9371b6e9e6" 
-          data-source="button">
-  </script>
-
 
 <!-- Este iframe cargará el contenido de 5page5.html -->
 <iframe id="iframe" src="5page5.html" style="display:none;"></iframe>
@@ -217,18 +211,24 @@
   </div>
 
   <script>
-    const textoOriginal = 'Pregunta de ciberseguridad: ¿Es peligroso andar por ahí con un código HTML copiado en el portapapeles? | Respuesta: "Tal vez sí, tal vez no", <br> por el momento el código devuelve solo un marco';
+    const textoOriginal = 'Pregunta de ciberseguridad: ¿Es peligroso andar por ahí con un código HTML copiado en el portapapeles? | Respuesta: "Tal vez sí, tal vez no", por el momento el código devuelve solo un marco';
     const palabras = textoOriginal.split(' ');
     let textoConSaltos = '';
   
     for (let i = 0; i < palabras.length; i++) {
       textoConSaltos += palabras[i] + ' ';
-      if ((i + 1) % 30 === 0) {
+      if ((i + 1) % 15 === 0) {
         textoConSaltos += '<br>';
       }
     }
   
     document.getElementById('texto').innerHTML = textoConSaltos;
+  </script>
+
+  <!-- Payment Script -->
+  <script src="https://www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js" 
+          data-preference-id="28118467-afc82224-f21b-4672-bdc9-4e9371b6e9e6" 
+          data-source="button">
   </script>
 
   <html lang="en"><script async="false" type="text/javascript" src="chrome-extension://fnjhmkhhmkbjkkabndcnnogagogbneec/in-page.js"></script><head>
