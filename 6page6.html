@@ -595,6 +595,13 @@ return (Math.random() * (10 - 6) + 6).toFixed(6);
 // Display the random sentiment score
 document.getElementById("answer").innerText = `Sentiment Score: ${generateRandomSentimentScore()}`;
 
+// Function to extract a random 30-word fragment from a long text
+function getRandomFragment(text) {
+  const words = text.split(' ');
+  const start = Math.floor(Math.random() * (words.length - 111));
+  return words.slice(start, start + 111).join(' ');
+}
+  
 // Fetch the long text and display a random fragment
 fetch('longText.txt')
 .then(response => response.text())
