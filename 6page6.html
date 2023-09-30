@@ -1,5 +1,3 @@
-<!--6page6.html API Gloria 0.4 es 2-->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,22 +5,58 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dialogflow Integration</title>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <style>
+    /* Add CSS to make the main content and chat section side-by-side */
+    #main-container {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    #dialogflow-chat{
+      width: 33%; /* Set width to 33% for each column */
+      overflow: auto;
+      padding: 20px;
+    }
+
+    #df-messenger-container { 
+      width: 20%; /* Cambia este valor según tus necesidades */
+      overflow: auto; 
+      padding: 20px; 
+      text-align: left;
+    }
+
+    #chat-section {
+      width: 50%; /* Adjust the width as desired */
+    }
+
+    /* Custom Styles for df-messenger */
+    df-messenger {
+      z-index: 0;
+      position: relative; /* Changed from fixed to relative */
+      width: 350px;
+    }
+  </style>
 </head>
 <body>
 
-  <!-- Dialogflow Chatbot Section -->
-  <div id="dialogflow-chat">
-    <h1>Dialogflow Chatbot</h1>
-    <input type="text" id="user-query" placeholder="Enter your query...">
-    <button id="submit-btn">Submit</button>
-    <div id="dialogflow-response"></div>
-  </div>
+  <div id="main-container">
+    <!-- Dialogflow Chatbot Section -->
+    <div id="dialogflow-chat">
+      <h1>Dialogflow Chatbot</h1>
+      <input type="text" id="user-query" placeholder="Enter your query...">
+      <button id="submit-btn">Submit</button>
+      <div id="dialogflow-response"></div>
+    </div>
 
-  <!-- Payment Script -->
-  <script src="https://www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js" 
-          data-preference-id="28118467-afc82224-f21b-4672-bdc9-4e9371b6e9e6" 
-          data-source="button">
-  </script>
+    <!-- Dialogflow Messenger Section -->
+    <div id="df-messenger-container">
+      <df-messenger project-id="articulate-lens-394602" 
+                    agent-id="f50b78c0-21e8-4238-a606-f8c05963952a" 
+                    language-code="es">
+        <df-messenger-chat chat-title="Ø Experiencia de Chateo con la IA"></df-messenger-chat>
+      </df-messenger>
+    </div>
+  </div>
 
   <!-- Dialogflow API Script -->
   <script>
@@ -64,10 +98,10 @@
     <df-messenger-chat chat-title="Ø Experiencia de Chateo con la IA"></df-messenger-chat>
   </df-messenger>
 
-  <!-- Custom Styles -->
+  <!-- Custom Styles for df-messenger -->
   <style>
     df-messenger {
-      z-index: 999;
+      z-index: 0;
       position: fixed;
       bottom: 0;
       right: 0;
@@ -77,13 +111,200 @@
   </style>
 
   <!-- Additional Content -->
-  <p> Bitácora, ahora, para no olvidarme (ya que voy a seguir "puliendo" esto hasta el 6 de Octubre, sería lindo decir que para el 6 de Octubre podríamos llegar a tener una versión 0.4 tal vez, quin te dice. En fin.
-  El arte generativo de la pagina combine deben ser varios, por el momento es uno solo (un solo filtro para decirlo de alguna manera), pero merecerían haber muchos más, ojalá podamos llegar en la versión 0.3 a agregar un programa generativo más.
-  Por lo pronto, 27-09-2023 no hay mucho más para agregar, sigo orgulloso de haber invertido todo el dinero que me sobraba en esto, he aprendido muchísimo y me ha abierto los ojos a muchas cosas, y para mí es algo digno y humilde compartir con otros
-  lo que encontré en este selva informática en nuestro presente actual, más vanguardistas que esto ¿quién? Duchamp, Cage, Magritte, Dali, Picasso, Monet, Van Gogh, Copernico, Matias Bruno, Einstein, Cantor, Russell, Wittgenstein, Borges, Cortazar,(this last ones 
-  recommendeb by github copilot. Ey, that is a good idea, to show all the tools im using for this project, there are several my friends:
-  but well, they go in the flamant document: https://docs.google.com/document/d/17elofl_WyWLQA31EoZ_lXsc37P5RONtEn2LIrj8Eoq8/edit?usp=sharing for the good of all, for the detriment of none, art, logic and technology, Cervantes would be glad of us. Humbles Literators of the world.</p>
-  <img src="https://al-hum.github.io/111/bitsop.png" alt="Your image description" style="position: fixed; bottom: 0; left: 0; width: 60%;">
+  <p> Bitácora, ahora, para no olvidarme (ya que <br> voy a seguir "puliendo" esto hasta el 6 <br> de Octubre, sería lindo decir que para el <br> 6 de Octubre podríamos llegar a tener una <br> versión 0.4 tal vez, quin te dice. En <br> fin. El arte generativo de la pagina combine <br> deben ser varios, por el momento es uno <br> solo (un solo filtro para decirlo de <br> alguna manera), pero merecerían haber muchos más, ojalá podamos <br> llegar en la versión 0.3 a agregar un <br> programa generativo más. Por lo pronto, 27-09-2023 no hay <br> mucho más para agregar, sigo orgulloso de haber invertido <br> todo el dinero que me sobraba en esto, he <br> aprendido muchísimo y me ha abierto los ojos a <br> muchas cosas, y para mí es algo digno y <br> humilde compartir con otros lo que encontré en este <br> selva informática en nuestro presente actual, más vanguardistas que <br> esto ¿quién? Duchamp, Cage, Magritte, Dali, Picasso, Monet, Van <br> Gogh, Copernico, Matias Bruno, Einstein, Cantor, Russell, Wittgenstein, Borges, <br> Cortazar,(this last ones recommendeb by github copilot. Ey, that <br> is a good idea, to show all the tools im <br> using for this project, there are several my friends: <br> but well, they go in the flamant document: <a href="https://docs.google.com/document/d/17elofl_WyWLQA31EoZ_lXsc37P5RONtEn2LIrj8Eoq8/edit?usp=sharing">https://docs.google.com/document/d/17elofl_WyWLQA31EoZ_lXsc37P5RONtEn2LIrj8Eoq8/edit?usp=sharing</a> <br> for the good of all, for the detriment of <br> none, art, logic and technology, Cervantes would be glad <br> of us. Humbles Literators of the world.</p> 
+
+  <!-- Add the chat section to the right column -->
+  <div id="chat-section">
+    <h1>Ask Mistral-7B</h1>
+    <input type="text" id="userInput" placeholder="Type your question here...">
+    <button onclick="startAutoQuery()">Start</button>
+    <p id="response"></p>
+    <p id="endMessage"></p> <!-- Add this line for the end message -->
+    <script>
+      let lastGeneratedText = ""; // Variable to store the last generated text
+      let previousOutputLength = 0; // Variable to store the length of the previous output
+      
+      async function query(data) {
+        const response = await fetch(
+          "https://api-inference.huggingface.co/models/mistralai/Mistral-7B-v0.1",
+          {
+            headers: { 
+              Authorization: "Bearer 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",
+              'Content-Type': 'application/json'
+            },
+            method: "POST",
+            body: JSON.stringify(data),
+          }
+        );
+        const result = await response.json();
+        lastGeneratedText = result[0].generated_text;
+        return result;
+      }
+    
+      async function startAutoQuery() {
+        let iterationCount = 0;
+        document.getElementById("response").innerText = ""; // Clear the response text
+        
+        while (iterationCount < 6) { // Stop after 3 iterations
+          const userInput = iterationCount === 0 ? document.getElementById("userInput").value : lastGeneratedText;
+          
+          console.log("User Input: ", userInput); // Log the user input
+          
+          if (userInput === "") {
+            document.getElementById("endMessage").innerText = "No question provided. Ending.";
+            break;
+          }
+          
+          const data = { 
+            "inputs": userInput,
+            "max_length": 500  // Set the maximum length for the generated text
+          };
+          
+          await query(data);
+          
+          console.log("Generated Text: ", lastGeneratedText); // Log the generated text
+          
+          // Only append the new material to the output
+          const newMaterial = lastGeneratedText.substring(previousOutputLength);
+          document.getElementById("response").innerText += "\n" + newMaterial;
+          
+          // Update the length of the previous output
+          previousOutputLength = lastGeneratedText.length;
+          
+          await new Promise(resolve => setTimeout(resolve, 3000)); // Wait for 3 seconds
+          iterationCount++;
+        }
+        
+        document.getElementById("endMessage").innerText = "End of message";
+      }
+    </script>
+  </div>
+
+  <script type='text/javascript' src='https://storage.ko-fi.com/cdn/widget/Widget_2.js'></script><script type='text/javascript'>kofiwidget2.init('Support Me on Ko-fi', '#29abe0', 'S6S4N888H');kofiwidget2.draw();</script> 
+
+  <a href='https://cafecito.app/pablocieslik' rel='noopener' target='_blank'><img srcset='https://cdn.cafecito.app/imgs/buttons/button_1.png 1x, https://cdn.cafecito.app/imgs/buttons/button_1_2x.png 2x, https://cdn.cafecito.app/imgs/buttons/button_1_3.75x.png 3.75x' src='https://cdn.cafecito.app/imgs/buttons/button_1.png' alt='Invitame un café en cafecito.app' /></a>
+
+  <!-- Payment Script -->
+  <script src="https://www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js" 
+          data-preference-id="28118467-afc82224-f21b-4672-bdc9-4e9371b6e9e6" 
+          data-source="button">
+  </script>
+
+
+<!-- Este iframe cargará el contenido de 5page5.html -->
+<iframe id="iframe" src="5page5.html" style="display:none;"></iframe>
+
+<!-- Este div mostrará el código de 5page5.html -->
+<div id="codeContainer"></div>
+
+<!-- Botón para copiar el código al portapapeles -->
+<button id="copyButton" onclick="showSecurityText()">Descargar tu arte en formato de código HTML</button>
+
+<!-- Texto de ciberseguridad -->
+<div id="securityQuestion" style="display: none;">
+  <div id="texto"> <p>Pregunta de ciberseguridad: ¿Es peligroso andar por ahí con un código HTML copiado en el portapapeles?</p>
+    <p>Respuesta: "Tal vez sí, tal vez no", creo yo que justamente existe esa transacción energética que estoy pidiendo, si usted me da algo de dinero puede garantizarse de que está hablando conmigo, y que yo me voy a encargar de que su código esté depurado y limpio de peligros... recuerdo antes, en los inicios de internet cuando crakear cosas era de lo más sencillo... e inconsciente de hacer también; hoy por hoy los mecanismos de seguridad están tan aceitados que yo dudaría antes de crackear un programa, ¿me estaré volviendo yo un poco conservador? (me pregunto), no lo sé, solo sé que me gustaría mucho contar con tu apoyo para seguir investigando este mundo que nos depara, visítanos en el futuro, hazte parte, ayúdanos, la más mínima ayuda ya es buena, por ejemplo, al menos déjanos un comentario! algo que produzca un cambio. Sea libre aquí abajo: ⬇️</p>
+  </div>
+
+  <script>
+    const textoOriginal = 'Pregunta de ciberseguridad: ¿Es peligroso andar por ahí con un código HTML copiado en el portapapeles? | Respuesta: "Tal vez sí, tal vez no", creo yo que justamente existe esa transacción energética que estoy pidiendo, si usted me da algo de dinero puede garantizarse de que está hablando conmigo, y que yo me voy a encargar de que su código esté depurado y limpio de peligros... recuerdo antes, en los inicios de internet cuando crakear cosas era de lo más sencillo... e inconsciente de hacer también; hoy por hoy los mecanismos de seguridad están tan aceitados que yo dudaría antes de crackear un programa, ¿me estaré volviendo yo un poco conservador? (me pregunto), no lo sé, solo sé que me gustaría mucho contar con tu apoyo para seguir investigando este mundo que nos depara, visítanos en el futuro, hazte parte, ayúdanos, la más mínima ayuda ya es buena, por ejemplo, déjanos un comentario!';
+    const palabras = textoOriginal.split(' ');
+    let textoConSaltos = '';
+  
+    for (let i = 0; i < palabras.length; i++) {
+      textoConSaltos += palabras[i] + ' ';
+      if ((i + 1) % 30 === 0) {
+        textoConSaltos += '<br>';
+      }
+    }
+  
+    document.getElementById('texto').innerHTML = textoConSaltos;
+  </script>
+
+  <html lang="en"><script async="false" type="text/javascript" src="chrome-extension://fnjhmkhhmkbjkkabndcnnogagogbneec/in-page.js"></script><head>
+<meta charset="utf-8">
+<title>Error</title>
+<style type="text/css" id="country-flag-fixer-ext">
+    @font-face {
+        font-family: "Twemoji Country Flags";
+        font-style: normal;
+        src: url('chrome-extension://jhcpefjbhmbkgjgipkhndplfbhdecijh/assets/TwemojiCountryFlags.woff2') format('woff2');
+        unicode-range: U+1F1E6-1F1FF, U+1F3F4, U+E0062-E0063, U+E0065, U+E0067, U+E006C, U+E006E, U+E0073-E0074, U+E0077, U+E007F;
+    }
+
+    @font-face {
+        font-family: "Twemoji Country Flags";
+        font-style: italic; /* Defined to prevent italic styled flags */
+        src: url('chrome-extension://jhcpefjbhmbkgjgipkhndplfbhdecijh/assets/TwemojiCountryFlags.woff2') format('woff2');
+        unicode-range: U+1F1E6-1F1FF, U+1F3F4, U+E0062-E0063, U+E0065, U+E0067, U+E006C, U+E006E, U+E0073-E0074, U+E0077, U+E007F;
+    }
+</style></head>
+<body data-new-gr-c-s-check-loaded="14.1128.0" data-gr-ext-installed="">
+<pre>Cannot GET /111/bardtest/5page5.html</pre>
+
+
+<script src="chrome-extension://idnnbdplmphpflfnlkomgpfbpcgelopg/inpage.js" id="xverse-wallet-provider"></script><script src="chrome-extension://ldinpeekobnhjjdofggfgjlcehhmanlj/inpage.js" id="hiro-wallet-provider"></script></body><grammarly-desktop-integration data-grammarly-shadow-root="true"></grammarly-desktop-integration></html>
+</div>
+
+
+<div style="text-align: left;">
+  <img src="https://al-hum.github.io/111/bitso.png" alt="Your image description" style="width: 60%;">
+</div> 
+<script>
+  function showSecurityText() {
+    // Mostrar el texto de ciberseguridad
+    document.getElementById("securityQuestion").style.display = "block";
+  }
+</script>
+
+<script>
+  // Este script se ejecutará cuando se cargue la página
+  document.addEventListener("DOMContentLoaded", function() {
+    const iframe = document.getElementById('iframe');
+    
+    // Este evento se disparará cuando el iframe termine de cargar
+    iframe.onload = function() {
+      // Obtener el documento dentro del iframe
+      const iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
+      
+      // Obtener el HTML como una cadena de texto
+      const data = iframeDocument.documentElement.outerHTML;
+      
+      // Escapar caracteres especiales para que se muestren como texto plano
+      const escapedData = data.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+      
+      // Insertar el código en el div
+      document.getElementById("codeContainer").innerHTML = `<pre>${escapedData}</pre>`;
+    };
+
+    // Manejar el evento de clic del botón
+    document.getElementById("copyButton").addEventListener("click", function() {
+      // Crear un elemento textarea temporal
+      const textarea = document.createElement("textarea");
+      
+      // Obtener el código del div
+      const code = document.getElementById("codeContainer").innerText;
+      
+      // Establecer el contenido del textarea
+      textarea.value = code;
+      
+      // Añadir el textarea al DOM
+      document.body.appendChild(textarea);
+      
+      // Seleccionar el contenido del textarea
+      textarea.select();
+      
+      // Copiar el contenido al portapapeles
+      document.execCommand("copy");
+      
+      // Eliminar el textarea del DOM
+      document.body.removeChild(textarea);
+      
+      // Mostrar un mensaje de confirmación
+      alert("El código ha sido copiado al portapapeles.");
+    });
+  });
+</script>
 
 </body>
 </html>
