@@ -1,4 +1,4 @@
-<!--test page <3page3>-->
+<!--lest test: 3page3 | 1-1-203-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,48 +17,46 @@
   <button id="nextButton">Siguiente</button>
   <script src="3page3.js"></script>
 
-  <!-- Contenedor para la respuesta de la IA -->
-  <div id="aiResponseContainer"></div>
+  <!-- Contenedor para la respuesta de la IA1: Mistral -->
+  <div id="aiResponseContainer1"></div>
+
+  <!-- Contenedor para la respuesta de la IA2: Español -->
+  <div id="aiResponseContainer2"></div>
 
   <script>
-    async function getLongerResponse(userPrompt, numCalls = 6) {
+    async function getLongerResponse(apiUrl, userPrompt, numCalls = 6) {
       let fullResponse = "";
-      
       for (let i = 0; i < numCalls; i++) {
         const data = {
           "inputs": userPrompt,
           "max_length": 500
         };
         
-        const response = await fetch(
-          "https://api-inference.huggingface.co/models/mistralai/Mistral-7B-v0.1",
-          {
-            headers: {
-              Authorization: "Bearer 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",
-              'Content-Type': 'application/json'
-            },
-            method: "POST",
-            body: JSON.stringify(data),
-          }
-        );
+        const response = await fetch(apiUrl, {
+          headers: {
+            Authorization: "Bearer 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",
+            'Content-Type': 'application/json'
+          },
+          method: "POST",
+          body: JSON.stringify(data),
+        });
         
         const result = await response.json();
-        const generatedText = result[0].generated_text;
-        
-        fullResponse += generatedText + " ";
+        fullResponse += result[0].generated_text + " ";
         
         await new Promise(resolve => setTimeout(resolve, 2000));
       }
-      
       return fullResponse;
     }
 
     document.addEventListener("DOMContentLoaded", async function() {
       const userPrompt = localStorage.getItem("userPrompt");
-      const longResponse = await getLongerResponse(userPrompt);
       
-      const aiResponseContainer = document.getElementById("aiResponseContainer");
-      aiResponseContainer.innerText = longResponse;
+      const mistralResponse = await getLongerResponse("https://api-inference.huggingface.co/models/mistralai/Mistral-7B-v0.1", userPrompt);
+      document.getElementById("aiResponseContainer1").innerText = mistralResponse;
+      
+      const espanolResponse = await getLongerResponse("https://api-inference.huggingface.co/models/ensamblador/gpt2_espanol_8hx512pos", userPrompt);
+      document.getElementById("aiResponseContainer2").innerText = espanolResponse;
     });
   </script>
 </body>
