@@ -1,4 +1,4 @@
-// 3page3.js
+// 3page3.js | 01-10-2023 | update image function
 
 // Get user prompt from localStorage
 const userPrompt = localStorage.getItem('userPrompt'); 
