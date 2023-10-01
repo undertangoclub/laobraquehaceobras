@@ -77,17 +77,17 @@ async function generateImage() {
 
   // Display image
 
-  function displayImage(imageUrl) {
+   function displayImage(imageUrl) {
     const img = document.createElement('img');
     img.src = imageUrl;
     img.onload = function() {
-      document.body.appendChild(img);
+      const imageContainer = document.getElementById('imageContainer');
+      imageContainer.appendChild(img);
       const storedImageUrl = localStorage.getItem('generatedImageUrl');
-localStorage.setItem('generatedImageUrl', imageUrl);
+      localStorage.setItem('generatedImageUrl', imageUrl);
       initializeWebGL(imageUrl);  // Call WebGL initialization here
     };
   }
-
 function toggleLoading(isLoading) {
     // Show/hide loader
   }
