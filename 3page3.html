@@ -78,10 +78,10 @@
     document.addEventListener("DOMContentLoaded", async function() {
       const userPrompt = localStorage.getItem("userPrompt");
       
-      const mistralResponse = await getLongerResponse("https://api-inference.huggingface.co/models/mistralai/Mistral-7B-v0.1", userPrompt);
+      const mistralResponse = await getLongerResponse("https://api-inference.huggingface.co/models/ensamblador/gpt2_espanol_8hx512pos", userPrompt);
       document.getElementById("aiResponseContainer1").innerText = mistralResponse;
       
-      const espanolResponse = await getLongerResponse2("https://api-inference.huggingface.co/models/ensamblador/gpt2_espanol_8hx512pos", userPrompt);
+      const espanolResponse = await getLongerResponse2("https://api-inference.huggingface.co/models/mistralai/Mistral-7B-v0.1", userPrompt);
       document.getElementById("aiResponseContainer2").innerText = espanolResponse;
     });
   </script>
