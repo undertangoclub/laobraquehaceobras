@@ -1,4 +1,4 @@
-<!--neo6p6 test 01-->
+<!--neo6p6 test 01 flying card-->
 <!DOCTYPE html>
 <html>
   <head>
@@ -28,7 +28,8 @@
 
       // Load the image
       const textureLoader = new THREE.TextureLoader();
-      const texture = textureLoader.load('path/to/image.jpg');
+      const imageUrl = localStorage.getItem('generatedImageUrl');
+      const texture = textureLoader.load(imageUrl);
 
       // Create a plane geometry
       const geometry = new THREE.PlaneGeometry(2, 2);
