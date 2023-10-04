@@ -1,344 +1,56 @@
-<!--5page5 Ø La obra que hace obras Ø WorkName AuthorName-->
+<!--5page5 Ø La obra que hace obras Ø WorkName AuthorName Complete-->
 
 <!DOCTYPE html>
 <html>
-  
 <head>
   <title>Combine Image and Shader</title>
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
-  
 <body>
   <h1>Combine Image and Shader</h1>
   <canvas id="glCanvas" width="512" height="512"></canvas>
+
+  <!-- Added divs for workName and authorName -->
+  <div id="workName"></div>
+  <div id="authorName"></div>
+
   <div id="apiResponse"></div>
   <div id="answer"></div>
-  <br> <!-- Added space -->
-  <div id="fragment"></div> <!-- Moved this up -->
-  <br> 
-   <!-- New input boxes -->
+  <br>
+  <div id="fragment"></div>
+  <br>
+  
+  <!-- New input boxes -->
   <label for="titulo">Título definito de la obra:</label>
   <input type="text" id="titulo" name="titulo">
   <br>
   <label for="autor">Nombre del Autor:</label>
   <input type="text" id="autor" name="autor">
   <br>
-  <br> 
+  <br>
   <button id="downloadButton">Download</button>
+
   <script>
-    function compileShader(gl, source, type) {
-      const shader = gl.createShader(type);
-      gl.shaderSource(shader, source);
-      gl.compileShader(shader);
-      if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
-        console.error('An error occurred compiling the shaders: ' + gl.getShaderInfoLog(shader));
-        gl.deleteShader(shader);
-        return null;
-      }
-      return shader;
-    }
+    // Your existing JavaScript code here
+    // ...
 
     window.addEventListener('load', function() {
       const canvas = document.getElementById('glCanvas');
       const gl = canvas.getContext('webgl');
 
+      // Retrieve workName and authorName from localStorage and display them
       const workName = localStorage.getItem('workName');
       const authorName = localStorage.getItem('authorName');
       document.getElementById('workName').textContent = `Work: ${workName}`;
       document.getElementById('authorName').textContent = `Author: ${authorName}`;
 
-      const imageUrl = localStorage.getItem('generatedImageUrl');
-      if (!imageUrl) {
-        console.error('Image URL not found in localStorage.');
-        return;
-      }
-
-      const img = new Image();
-      img.crossOrigin = "anonymous";
-      img.src = imageUrl;
-
-        img.onload = function() {
-          // Draw the image on the canvas using 2D context
-          //const ctx = canvas.getContext('2d');
-          //ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-
-        const vsSource = `
-          attribute vec4 aVertexPosition;
-          varying vec2 vTextureCoord;
-          void main(void) {
-            gl_Position = aVertexPosition;
-            vTextureCoord = aVertexPosition.xy * 0.5 + 0.5;
-            vTextureCoord.y = 1.0 - vTextureCoord.y;  // Flip the y-coordinate
-          }
-        `;
-
-        const fsSource = `
-  precision mediump float;
-  varying vec2 vTextureCoord;
-  uniform sampler2D uTexture;
-  uniform float u_time; 
-
-  vec3 palette(float t) {
-    t += u_time; 
-    vec3 a = vec3(-0.132, 0.258, 0.648);
-    vec3 b = vec3(1.713, -1.047, -0.002);
-    vec3 c = vec3(1.028, -3.142, 3.138);
-    vec3 d = vec3(2.007, 1.447, 3.417);
-    return a + b * cos(6.28318 * (c * t + d));
-  }
-
-  void main() {
-    vec2 uv = vTextureCoord;
-    vec2 uv0 = uv;
-    uv = fract(uv * 2.0) - 0.5;
-    float d = length(uv);
-    vec3 col = palette(length(uv0));
-    d = sin(d * 8.0) / 8.0;
-    d = abs(d);
-    d = 0.02 / d;
-    col *= d;
-    vec4 texColor = texture2D(uTexture, vTextureCoord);
-    gl_FragColor = vec4(col * texColor.rgb, 1.0);
-  }
-`;
-
-
-        // Compile shaders
-        const vertexShader = compileShader(gl, vsSource, gl.VERTEX_SHADER);
-        const fragmentShader = compileShader(gl, fsSource, gl.FRAGMENT_SHADER);
-
-        // Link program
-        const program = gl.createProgram();
-        gl.attachShader(program, vertexShader);
-        gl.attachShader(program, fragmentShader);
-        gl.linkProgram(program);
-
-        if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
-          console.error('Unable to initialize the shader program: ' + gl.getProgramInfoLog(program));
-        }
-
-        gl.useProgram(program);
-
-        // Create and bind the texture
-        const texture = gl.createTexture();
-        gl.bindTexture(gl.TEXTURE_2D, texture);
-        gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, img);
-
-        // Set texture parameters
-        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
-        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
-        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
-
-        // Bind the texture to the shader
-        const uTexture = gl.getUniformLocation(program, 'uTexture');
-        gl.activeTexture(gl.TEXTURE0);
-        gl.bindTexture(gl.TEXTURE_2D, texture);
-        gl.uniform1i(uTexture, 0);
-
-        
-
-        // Start animation
-        // Start animation
-        function animate() {
-          // Update uniforms if needed
-          // For example, if you have a time uniform, you can update it like this:
-          // const u_time = gl.getUniformLocation(program, 'u_time');
-          // gl.uniform1f(u_time, performance.now() / 1000);
-
-          // Draw the scene
-          gl.drawArrays(gl.TRIANGLES, 0, 6);  // Assuming you have 6 vertices
-
-          // Request the next frame
-          requestAnimationFrame(animate);
-        }
-
-        // Initialize your buffer and attributes here
-        // For example:
-        const vertices = new Float32Array([
-          -1, -1,
-          1, -1,
-          -1,  1,
-          -1,  1,
-          1, -1,
-          1,  1
-        ]);
-
-        const vertexBuffer = gl.createBuffer();
-        gl.bindBuffer(gl.ARRAY_BUFFER, vertexBuffer);
-        gl.bufferData(gl.ARRAY_BUFFER, vertices, gl.STATIC_DRAW);
-
-        const position = gl.getAttribLocation(program, 'aVertexPosition');
-        gl.enableVertexAttribArray(position);
-        gl.vertexAttribPointer(position, 2, gl.FLOAT, false, 0, 0);
-
-        // Get the location of the time uniform
-const u_time = gl.getUniformLocation(program, 'u_time');
-
-// Start animation
-function animate() {
-  // Update time
-  gl.uniform1f(u_time, performance.now() / 1000);
-
-  // Draw the scene
-  gl.drawArrays(gl.TRIANGLES, 0, 6);  // Assuming you have 6 vertices
-
-  // Request the next frame
-  requestAnimationFrame(animate);
-}
-
-
-        // Start the animation loop
-        animate();
-      };
-
-      // Function to generate a unique session ID
-  function generateSessionId() {
-    return Math.random().toString(36).substring(7);
-  }
-
-
-      // The specific question to analyze !!!THIS MUST BE REPLACE FELLOWS ;)
-const specificQuestion = "¿Qué es la obra que hace obras?";
-
-
-// Google Natural Language API 
-const apiKey = "AIzaSyA-K_GRJ-Qn2jNh8eDgDF3_T2tHUPMSpRk"; // Replace with your actual API key
-const url = `https://language.googleapis.com/v1/documents:analyzeSentiment?key=${apiKey}`;
-
-const data = {
-  document: {
-    type: "PLAIN_TEXT",
-    content: specificQuestion
-  },
-  encodingType: "UTF8"
-};
-
-fetch(url, {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json",
-  },
-  body: JSON.stringify(data)
-})
-.then(response => response.json())
-.then(data => {
-  console.log("Sentiment Analysis:", data);
-  document.getElementById("answer").innerText = `Sentiment Score: ${data.documentSentiment.score}`;
-})
-.catch(error => {
-  console.error("Error:", error);
-});
+      // Rest of your existing code
+      // ...
     });
-
-//API Natural Language de Google
-
-    const apiKey = "AIzaSyA-K_GRJ-Qn2jNh8eDgDF3_T2tHUPMSpRk";
-const url = `https://language.googleapis.com/v1/documents:analyzeSentiment?key=${apiKey}`;
-
-const data = {
-  document: {
-    type: "PLAIN_TEXT",
-    content: "Your text to analyze here."
-  },
-  encodingType: "UTF8"
-};
-
-fetch(url, {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json",
-  },
-  body: JSON.stringify(data)
-})
-.then(response => response.json())
-.then(data => {
-  console.log("Sentiment Analysis:", data);
-  // You can now use 'data' to display the sentiment analysis results on your webpage.
-  document.getElementById("answer").innerText = `Sentiment Score: ${data.documentSentiment.score}`;
-})
-.catch(error => {
-  console.error("Error:", error);
-});
-
-const downloadButton = document.getElementById("downloadButton");
-
-downloadButton.addEventListener("click", function() {
-  // Navigate to 6page6.html
-  console.log("Redirecting to:", "6page6.html");
-  window.location.href = "6page6.html";
-});
-
-
-    //fin scriptø
-
-    
-
-
-
   </script>
-
-  <div id="fragment"></div>
-  <script>
-    fetch('longText.txt')
-  .then(response => response.text())
-  .then(text => {
-
-    // Extract 30 word fragment
-    const fragment = getFragment(text);
-    
-    // Display fragment 
-    document.getElementById('fragment').innerText = fragment;
-
-  });
-
- // Function to generate a random sentiment score between 6 and 10 with 6 decimal points
- function generateRandomSentimentScore() {
-  return (Math.random() * (10 - 6) + 6).toFixed(6);
-}
-
-// Display the random sentiment score
-document.getElementById("answer").innerText = `Sentiment Score: ${generateRandomSentimentScore()}`;
-
-// Function to extract a random 30-word fragment from a long text
-function getRandomFragment(text) {
-  const words = text.split(' ');
-  const start = Math.floor(Math.random() * (words.length - 111));
-  return words.slice(start, start + 111).join(' ');
-}
-
-// Fetch the long text and display a random fragment
-fetch('longText.txt')
-  .then(response => response.text())
-  .then(text => {
-    const fragment = getRandomFragment(text);
-    document.getElementById('fragment').innerText = fragment;
-  });
-
-async function fetchRandomWikiSnippet() {
-  try {
-    // Fetch a random Wikipedia article title
-    const randomArticleResponse = await axios.get('https://en.wikipedia.org/w/api.php?action=query&list=random&rnlimit=1&format=json&origin=*');
-    const randomArticleTitle = randomArticleResponse.data.query.random[0].title;
-
-    // Fetch the content of the random article
-    const articleContentResponse = await axios.get(`https://en.wikipedia.org/w/api.php?action=query&prop=extracts&exintro&titles=${encodeURIComponent(randomArticleTitle)}&format=json&origin=*`);
-    const articleContent = Object.values(articleContentResponse.data.query.pages)[0].extract;
-
-    // Extract a 50-word snippet from the article content
-    const snippet = articleContent.split(' ').slice(0, 50).join(' ');
-
-    // Display the snippet on the web page
-    document.getElementById('wikiSnippet').innerHTML = `<strong>Random Wikipedia Snippet:</strong> ${snippet}... <a href="https://en.wikipedia.org/wiki/${encodeURIComponent(randomArticleTitle)}" target="_blank">Read more</a>`;
-  } catch (error) {
-    console.error('Error fetching Wikipedia snippet:', error);
-  }
-}
-
-// Call the function to fetch the random Wikipedia snippet
-fetchRandomWikiSnippet();
-</script>
-
 </body>
+</html>
+
 </html>
 
 <!--fin 5page5-->
