@@ -42,6 +42,11 @@
       const canvas = document.getElementById('glCanvas');
       const gl = canvas.getContext('webgl');
 
+      const workName = localStorage.getItem('workName');
+      const authorName = localStorage.getItem('authorName');
+      document.getElementById('workName').textContent = `Work: ${workName}`;
+      document.getElementById('authorName').textContent = `Author: ${authorName}`;
+
       const imageUrl = localStorage.getItem('generatedImageUrl');
       if (!imageUrl) {
         console.error('Image URL not found in localStorage.');
