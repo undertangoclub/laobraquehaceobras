@@ -1,0 +1,45 @@
+<!--5page5 Ø La obra que hace obras Ø-->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Combine Image and Shader</title>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+  <h1>Combine Image and Shader</h1>
+  <canvas id="glCanvas" width="512" height="512"></canvas>
+  <div id="apiResponse"></div>
+  <div id="answer"></div>
+  <br>
+  <div id="fragment"></div>
+  <br> 
+  <br> 
+
+  <!-- New input boxes -->
+  <label for="titulo">Título definito de la obra:</label>
+  <input type="text" id="titulo" name="titulo">
+  <br>
+  <label for="autor">Nombre del Autor:</label>
+  <input type="text" id="autor" name="autor">
+  <br>
+
+  <button id="downloadButton">Download</button>
+  <script>
+    // Rest of the code...
+    const downloadButton = document.getElementById("downloadButton");
+    downloadButton.addEventListener("click", function() {
+      // Store the input values in localStorage
+      const titulo = document.getElementById("titulo").value;
+      const autor = document.getElementById("autor").value;
+      localStorage.setItem("titulo", titulo);
+      localStorage.setItem("autor", autor);
+
+      // Navigate to 6page6.html
+      console.log("Redirecting to:", "6page6.html");
+      window.location.href = "6page6.html";
+    });
+    // Rest of the code...
+  </script>
+</body>
+</html>
+<!--fin 5page5-->
