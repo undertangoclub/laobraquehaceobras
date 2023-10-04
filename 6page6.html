@@ -1,47 +1,47 @@
 <!--neo6p6.html Null Null-->
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>Image in 3D Environment</title>
-    <style>
-      body {
-        margin: 0;
-        overflow: hidden;
-      }
-      .info-container {
-        position: absolute;
-        top: 10px;
-        left: 10px;
-        color: white;
-        font-size: 18px;
-      }
-      .tokenize-container {
-        position: absolute;
-        bottom: 10px;
-        left: 10px;
-        color: white;
-        font-size: 18px;
-      }
-      .tokenize-container button {
-        margin-right: 10px;
-      }
-    </style>
-  </head>
-  <body>
-    <div class="info-container">
-      <p id="workName"></p>
-      <p id="authorName"></p>
-      <div id="workName"></div>
-      <div id="authorName"></div>
-    </div>
-    <div class="tokenize-container">
-      <p>¿Quieres tokenizar tu obra?</p>
-      <a href="https://al-hum.github.io/111/7page7.html"><button id="yesButton">Yes</button></a>
-      <a href="https://al-hum.github.io/111/7page7.html"><button id="noButton">No</button></a>
-    </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script>
+<head>
+  <meta charset="utf-8">
+  <title>Image in 3D Environment</title>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+    }
+    .info-container {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      color: white;
+      font-size: 18px;
+    }
+    .tokenize-container {
+      position: absolute;
+      bottom: 10px;
+      left: 10px;
+      color: white;
+      font-size: 18px;
+    }
+    .tokenize-container button {
+      margin-right: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="info-container">
+    <p id="workNameText"></p>
+    <p id="authorNameText"></p>
+    <div id="workName"></div>
+    <div id="authorName"></div>
+  </div>
+  <div class="tokenize-container">
+    <p>¿Quieres tokenizar tu obra?</p>
+    <a href="https://al-hum.github.io/111/7page7.html"><button id="yesButton">Yes</button></a>
+    <a href="https://al-hum.github.io/111/7page7.html"><button id="noButton">No</button></a>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script>
       // Create a scene
       const scene = new THREE.Scene();
       // Create a camera
