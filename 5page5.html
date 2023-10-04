@@ -2,21 +2,27 @@
 
 <!DOCTYPE html>
 <html>
+  
 <head>
   <title>Combine Image and Shader</title>
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
+  
 <body>
   <h1>Combine Image and Shader</h1>
   <canvas id="glCanvas" width="512" height="512"></canvas>
-
-  
-
   <div id="apiResponse"></div>
   <div id="answer"></div>
   <br> <!-- Added space -->
   <div id="fragment"></div> <!-- Moved this up -->
   <br> 
+   <!-- New input boxes -->
+  <label for="titulo">Título definito de la obra:</label>
+  <input type="text" id="titulo" name="titulo">
+  <br>
+  <label for="autor">Nombre del Autor:</label>
+  <input type="text" id="autor" name="autor">
+  <br>
   <br> 
   <button id="downloadButton">Download</button>
   <script>
