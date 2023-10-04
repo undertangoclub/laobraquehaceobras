@@ -16,12 +16,27 @@
         color: white;
         font-size: 18px;
       }
+      .tokenize-container {
+        position: absolute;
+        bottom: 10px;
+        left: 10px;
+        color: white;
+        font-size: 18px;
+      }
+      .tokenize-container button {
+        margin-right: 10px;
+      }
     </style>
   </head>
   <body>
     <div class="info-container">
       <p id="workName"></p>
       <p id="authorName"></p>
+    </div>
+    <div class="tokenize-container">
+      <p>¿Quieres tokenizar tu obra?</p>
+      <a href="https://al-hum.github.io/111/7page7.html"><button id="yesButton">Yes</button></a>
+      <a href="https://al-hum.github.io/111/7page7.html"><button id="noButton">No</button></a>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script>
@@ -51,6 +66,17 @@
       const authorName = localStorage.getItem('authorName');
       document.getElementById('workName').textContent = `Work: ${workName}`;
       document.getElementById('authorName').textContent = `Author: ${authorName}`;
+      // Add event listeners to the buttons
+      const yesButton = document.getElementById('yesButton');
+      const noButton = document.getElementById('noButton');
+      yesButton.addEventListener('click', () => {
+        console.log('Yes button clicked');
+        // Add your logic for tokenizing the work here
+      });
+      noButton.addEventListener('click', () => {
+        console.log('No button clicked');
+        // Add your logic for not tokenizing the work here
+      });
       // Create an animation loop
       function animate() {
         requestAnimationFrame(animate);
