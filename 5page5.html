@@ -1,4 +1,4 @@
-<!--5page5 Ø La obra que hace obras Ø Name and Author Inputs-->
+<!--5page5 Ø La obra que hace obras Ø Name and Author Inputs 02-->
 <!DOCTYPE html>
 <html>
 <head>
@@ -39,7 +39,17 @@
       const canvas = document.getElementById('glCanvas');
       const gl = canvas.getContext('webgl');
 
+// Your new code for handling workName and authorName inputs
+  const workNameInput = document.getElementById('workNameInput');
+  const authorNameInput = document.getElementById('authorNameInput');
 
+  workNameInput.addEventListener('input', function() {
+    localStorage.setItem('workName', this.value);
+  });
+
+  authorNameInput.addEventListener('input', function() {
+    localStorage.setItem('authorName', this.value);
+  });
       
       const imageUrl = localStorage.getItem('generatedImageUrl');
       if (!imageUrl) {
