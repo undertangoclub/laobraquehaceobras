@@ -1,5 +1,4 @@
-<!--5page5 Ø La obra que hace obras Ø-->
-
+<!--5page5 Ø La obra que hace obras Ø Name and Author Inputs-->
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,15 +8,19 @@
 <body>
   <h1>Combine Image and Shader</h1>
   <canvas id="glCanvas" width="512" height="512"></canvas>
-
-  
-
   <div id="apiResponse"></div>
   <div id="answer"></div>
-  <br> <!-- Added space -->
-  <div id="fragment"></div> <!-- Moved this up -->
+  <br>
+  <div id="fragment"></div>
   <br> 
   <br> 
+  <label for="workNameInput">Nombre definitivo de la obra:</label>
+  <input type="text" id="workNameInput">
+  <br>
+  <label for="authorNameInput">Nombre del Autor:</label>
+  <input type="text" id="authorNameInput">
+  <br>
+  <br>
   <button id="downloadButton">Download</button>
   <script>
     function compileShader(gl, source, type) {
