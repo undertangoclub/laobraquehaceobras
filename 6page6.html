@@ -1,4 +1,4 @@
-<!--neo6p6.html => Yes.html | No = Null/null-->
+<!--neo6p6.html => Yes firestore-->
 <!DOCTYPE html>
 <html>
 <head>
@@ -39,7 +39,7 @@
   </div>
   <div class="tokenize-container">
     <p>¿Quieres tokenizar tu obra?</p>
-    <a href="https://al-hum.github.io/111/yes.html"><button id="yesButton">Yes</button></a>
+    <a href="https://al-hum.github.io/111/yes.html"><button id="yesButton" onclick="saveData()">Yes</button></a>
     <a href="https://al-hum.github.io/111/7page7.html"><button id="noButton">No</button></a>
   </div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
@@ -91,251 +91,33 @@
         renderer.render(scene, camera);
       }
       animate();
+
+      function saveData() {
+        // Obtiene los valores de los inputs
+        const workName = document.getElementById("workName").textContent;
+        const authorName = document.getElementById("authorName").textContent;
+        const userPrompt = document.getElementById("userPrompt").textContent;
+    
+        // Crea un documento nuevo
+        const docRef = firebase.firestore().collection("obras").doc();
+    
+        // Agrega los datos al documento
+        docRef.set({
+          nombre_obra: workName,
+          autor: authorName,
+          pregunta_inicial: userPrompt,
+        });
+    
+        // Guarda el documento
+        docRef.save().then(() => {
+          // Si el documento se guarda correctamente, muestra un mensaje de confirmación
+          alert("Los datos se han guardado correctamente.");
+        }).catch(() => {
+          // Si no es posible guardar el documento, muestra un mensaje de error
+          alert("No es posible guardar los datos.");
+        });
+      }
     </script>
   </body>
 </html>
 <!--fin neo6p6.html-->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
