@@ -32,8 +32,10 @@
   <div class="info-container">
     <p id="workNameText"></p>
     <p id="authorNameText"></p>
+    <p id="userPromptText"></p>
     <div id="workName"></div>
     <div id="authorName"></div>
+    <div id="userPrompt"></div>
   </div>
   <div class="tokenize-container">
     <p>¿Quieres tokenizar tu obra?</p>
@@ -66,8 +68,10 @@
       // Display the name of the work and author
       const workName = localStorage.getItem('workName');
       const authorName = localStorage.getItem('authorName');
+      const userPrompt = localStorage.getItem('userPrompt');
       document.getElementById('workName').textContent = `Work: ${workName}`;
       document.getElementById('authorName').textContent = `Author: ${authorName}`;
+      document.getElementById('userPrompt').textContent = `Pregunta Inicial: ${userPrompt}`
       // Add event listeners to the buttons
       const yesButton = document.getElementById('yesButton');
       const noButton = document.getElementById('noButton');
