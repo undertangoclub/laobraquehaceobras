@@ -1,4 +1,4 @@
-<!--4page4.html-->
+<!--4page4.html 12-10-2023-->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -12,5 +12,80 @@
   <canvas id="glCanvas" width="512" height="512"></canvas>
   <canvas id="glCanvas"></canvas>
   <button id="combineButton">Combine</button>
+
+  <!-- Contenedor para la respuesta de la IA1: Mistral -->
+  <div id="aiResponseContainer1"></div>
+
+  <!-- Contenedor para la respuesta de la IA2: Español -->
+  <div id="aiResponseContainer2"></div>
+  
+   <script>
+    let lastGeneratedText = ""; // Variable to store the last generated text
+    let previousOutputLength = 0; // Variable to store the length of the previous output
+
+    async function query(data) {
+      const response = await fetch(
+        data.apiUrl,
+        {
+          headers: { 
+            Authorization: "Bearer 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",
+            'Content-Type': 'application/json'
+          },
+          method: "POST",
+          body: JSON.stringify(data),
+        }
+      );
+      const result = await response.json();
+      lastGeneratedText = result[0].generated_text;
+      return result;
+    }
+
+    async function startAutoQuery(apiUrl, containerId, userPrompt, numCalls = 6) {
+      let iterationCount = 0;
+      const container = document.getElementById(containerId);
+      container.innerText = ""; // Clear the response text
+      
+      while (iterationCount < numCalls) {
+        const userInput = iterationCount === 0 ? userPrompt : lastGeneratedText;
+        
+        console.log("User Input: ", userInput); // Log the user input
+        
+        if (userInput === "") {
+          container.innerText = "No question provided. Ending.";
+          break;
+        }
+        
+        const data = { 
+          "inputs": userInput,
+          "max_length": 500  // Set the maximum length for the generated text
+        };
+        
+        data.apiUrl = apiUrl;
+        await query(data);
+        
+        console.log("Generated Text: ", lastGeneratedText); // Log the generated text
+        
+        // Only append the new material to the output
+        const newMaterial = lastGeneratedText.substring(previousOutputLength);
+        container.innerText += "\n" + newMaterial;
+        
+        // Update the length of the previous output
+        previousOutputLength = lastGeneratedText.length;
+        
+        await new Promise(resolve => setTimeout(resolve, 3000)); // Wait for 3 seconds
+        iterationCount++;
+      }
+      
+      container.innerText += "\nEnd of message";
+    }
+
+    document.addEventListener("DOMContentLoaded", async function() {
+      const userPrompt = localStorage.getItem("userPrompt");
+      
+      await startAutoQuery("https://api-inference.huggingface.co/models/HuggingFaceH4/zephyr-7b-alpha", "aiResponseContainer1", userPrompt);
+      
+      await startAutoQuery("https://api-inference.huggingface.co/models/bigscience/bloom", "aiResponseContainer2", userPrompt);
+    });
+  </script>
 </body>
 </html>
